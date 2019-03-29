@@ -1,0 +1,20 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "o-image.arreferenceimage"
+    },
+    {
+      "filename" : "power_ranger_46.arreferenceimage"
+    },
+    {
+      "filename" : "power-rangers-105.arreferenceimage"
+    },
+    {
+      "filename" : "x-image.arreferenceimage"
+    }
+  ]
+}

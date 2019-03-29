@@ -7,14 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12341670DB53C6D99000B257 /* Pods_CabinARUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15540B481D81A532360C274 /* Pods_CabinARUITests.framework */; };
 		6660A95D2225860E003CA656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A95C2225860E003CA656 /* AppDelegate.swift */; };
 		6660A95F2225860E003CA656 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6660A95E2225860E003CA656 /* art.scnassets */; };
-		6660A9612225860E003CA656 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A9602225860E003CA656 /* ViewController.swift */; };
+		6660A9612225860E003CA656 /* SpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A9602225860E003CA656 /* SpaceViewController.swift */; };
 		6660A9642225860E003CA656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6660A9622225860E003CA656 /* Main.storyboard */; };
 		6660A9662225860E003CA656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6660A9652225860E003CA656 /* Assets.xcassets */; };
 		6660A9692225860E003CA656 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6660A9672225860E003CA656 /* LaunchScreen.storyboard */; };
 		6660A9742225860E003CA656 /* CabinARTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A9732225860E003CA656 /* CabinARTests.swift */; };
 		6660A97F2225860F003CA656 /* CabinARUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A97E2225860F003CA656 /* CabinARUITests.swift */; };
+		6660A98E22258A63003CA656 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6660A98D22258A63003CA656 /* index.html */; };
+		6660A99022258C8C003CA656 /* WebAssets in Resources */ = {isa = PBXBuildFile; fileRef = 6660A98F22258C8C003CA656 /* WebAssets */; };
+		6660A99222258D54003CA656 /* three.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6660A99122258D54003CA656 /* three.min.js */; };
+		6660A99422258E7A003CA656 /* aframe.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6660A99322258E7A003CA656 /* aframe.min.js */; };
+		66920A9A224C2CB0008CBCD3 /* CabinSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66920A99224C2CB0008CBCD3 /* CabinSpace.swift */; };
+		66920A9C224C2E3E008CBCD3 /* CabinPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66920A9B224C2E3E008CBCD3 /* CabinPiece.swift */; };
+		66C05CC3224AF300008A2DB1 /* CabinARApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC2224AF300008A2DB1 /* CabinARApi.swift */; };
+		66C05CC5224BBAB7008A2DB1 /* SpacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */; };
+		66C05CC7224BBD09008A2DB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */; };
+		66C05CC9224BBD15008A2DB1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */; };
+		A4B870BF2A29126246F0A9F4 /* Pods_CabinARTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */; };
+		D29A5E8CD56568580CB1AC79 /* Pods_CabinAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CabinAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FD56C9B83A7871C8E98A41 /* Pods-CabinARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARTests.debug.xcconfig"; path = "Target Support Files/Pods-CabinARTests/Pods-CabinARTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6660A9592225860E003CA656 /* CabinAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabinAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6660A95C2225860E003CA656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6660A95E2225860E003CA656 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		6660A9602225860E003CA656 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6660A9602225860E003CA656 /* SpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceViewController.swift; sourceTree = "<group>"; };
 		6660A9632225860E003CA656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6660A9652225860E003CA656 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6660A9682225860E003CA656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +64,23 @@
 		6660A97A2225860F003CA656 /* CabinARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CabinARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6660A97E2225860F003CA656 /* CabinARUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinARUITests.swift; sourceTree = "<group>"; };
 		6660A9802225860F003CA656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6660A98D22258A63003CA656 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		6660A98F22258C8C003CA656 /* WebAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WebAssets; path = CabinAR/WebAssets; sourceTree = "<group>"; };
+		6660A99122258D54003CA656 /* three.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = three.min.js; sourceTree = "<group>"; };
+		6660A99322258E7A003CA656 /* aframe.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = aframe.min.js; sourceTree = "<group>"; };
+		66920A99224C2CB0008CBCD3 /* CabinSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinSpace.swift; sourceTree = "<group>"; };
+		66920A9B224C2E3E008CBCD3 /* CabinPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinPiece.swift; sourceTree = "<group>"; };
+		66C05CC2224AF300008A2DB1 /* CabinARApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinARApi.swift; sourceTree = "<group>"; };
+		66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesTableViewController.swift; sourceTree = "<group>"; };
+		66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CabinARTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A59F284574D5166113F905 /* Pods-CabinARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARUITests.release.xcconfig"; path = "Target Support Files/Pods-CabinARUITests/Pods-CabinARUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8C4CDE8DC883D17E12B08F23 /* Pods-CabinARUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARUITests.debug.xcconfig"; path = "Target Support Files/Pods-CabinARUITests/Pods-CabinARUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A0ED370B3CE3A25A20CAB6C1 /* Pods-CabinAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinAR.debug.xcconfig"; path = "Target Support Files/Pods-CabinAR/Pods-CabinAR.debug.xcconfig"; sourceTree = "<group>"; };
+		D0CD9E680017615E2A9E97BF /* Pods-CabinAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinAR.release.xcconfig"; path = "Target Support Files/Pods-CabinAR/Pods-CabinAR.release.xcconfig"; sourceTree = "<group>"; };
+		E370940493E94323CE49BA70 /* Pods-CabinARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARTests.release.xcconfig"; path = "Target Support Files/Pods-CabinARTests/Pods-CabinARTests.release.xcconfig"; sourceTree = "<group>"; };
+		F15540B481D81A532360C274 /* Pods_CabinARUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CabinARUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29A5E8CD56568580CB1AC79 /* Pods_CabinAR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B870BF2A29126246F0A9F4 /* Pods_CabinARTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12341670DB53C6D99000B257 /* Pods_CabinARUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +114,13 @@
 		6660A9502225860E003CA656 = {
 			isa = PBXGroup;
 			children = (
+				6660A98F22258C8C003CA656 /* WebAssets */,
 				6660A95B2225860E003CA656 /* CabinAR */,
 				6660A9722225860E003CA656 /* CabinARTests */,
 				6660A97D2225860F003CA656 /* CabinARUITests */,
 				6660A95A2225860E003CA656 /* Products */,
+				AF2596D7461A1A6AB82DB427 /* Pods */,
+				FB93B06D39068315AD0E6C92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +137,20 @@
 		6660A95B2225860E003CA656 /* CabinAR */ = {
 			isa = PBXGroup;
 			children = (
+				6660A98C22258A29003CA656 /* WebAssets */,
 				6660A95C2225860E003CA656 /* AppDelegate.swift */,
 				6660A95E2225860E003CA656 /* art.scnassets */,
-				6660A9602225860E003CA656 /* ViewController.swift */,
+				6660A9602225860E003CA656 /* SpaceViewController.swift */,
 				6660A9622225860E003CA656 /* Main.storyboard */,
+				66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */,
+				66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */,
+				66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */,
 				6660A9652225860E003CA656 /* Assets.xcassets */,
 				6660A9672225860E003CA656 /* LaunchScreen.storyboard */,
 				6660A96A2225860E003CA656 /* Info.plist */,
+				66C05CC2224AF300008A2DB1 /* CabinARApi.swift */,
+				66920A99224C2CB0008CBCD3 /* CabinSpace.swift */,
+				66920A9B224C2E3E008CBCD3 /* CabinPiece.swift */,
 			);
 			path = CabinAR;
 			sourceTree = "<group>";
@@ -128,6 +173,39 @@
 			path = CabinARUITests;
 			sourceTree = "<group>";
 		};
+		6660A98C22258A29003CA656 /* WebAssets */ = {
+			isa = PBXGroup;
+			children = (
+				6660A99322258E7A003CA656 /* aframe.min.js */,
+				6660A99122258D54003CA656 /* three.min.js */,
+				6660A98D22258A63003CA656 /* index.html */,
+			);
+			path = WebAssets;
+			sourceTree = "<group>";
+		};
+		AF2596D7461A1A6AB82DB427 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0ED370B3CE3A25A20CAB6C1 /* Pods-CabinAR.debug.xcconfig */,
+				D0CD9E680017615E2A9E97BF /* Pods-CabinAR.release.xcconfig */,
+				50FD56C9B83A7871C8E98A41 /* Pods-CabinARTests.debug.xcconfig */,
+				E370940493E94323CE49BA70 /* Pods-CabinARTests.release.xcconfig */,
+				8C4CDE8DC883D17E12B08F23 /* Pods-CabinARUITests.debug.xcconfig */,
+				78A59F284574D5166113F905 /* Pods-CabinARUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FB93B06D39068315AD0E6C92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */,
+				72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */,
+				F15540B481D81A532360C274 /* Pods_CabinARUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6660A9832225860F003CA656 /* Build configuration list for PBXNativeTarget "CabinAR" */;
 			buildPhases = (
+				ADC23E8A69235A15A3960F6A /* [CP] Check Pods Manifest.lock */,
 				6660A9552225860E003CA656 /* Sources */,
 				6660A9562225860E003CA656 /* Frameworks */,
 				6660A9572225860E003CA656 /* Resources */,
+				E9444612B3456C47EE66992F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +232,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6660A9862225860F003CA656 /* Build configuration list for PBXNativeTarget "CabinARTests" */;
 			buildPhases = (
+				73AFDBEFBD13289BC15D1843 /* [CP] Check Pods Manifest.lock */,
 				6660A96B2225860E003CA656 /* Sources */,
 				6660A96C2225860E003CA656 /* Frameworks */,
 				6660A96D2225860E003CA656 /* Resources */,
@@ -170,6 +251,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6660A9892225860F003CA656 /* Build configuration list for PBXNativeTarget "CabinARUITests" */;
 			buildPhases = (
+				D303C95CFE219E836B4910C2 /* [CP] Check Pods Manifest.lock */,
 				6660A9762225860F003CA656 /* Sources */,
 				6660A9772225860F003CA656 /* Frameworks */,
 				6660A9782225860F003CA656 /* Resources */,
@@ -232,9 +314,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6660A99022258C8C003CA656 /* WebAssets in Resources */,
+				6660A98E22258A63003CA656 /* index.html in Resources */,
 				6660A95F2225860E003CA656 /* art.scnassets in Resources */,
 				6660A9692225860E003CA656 /* LaunchScreen.storyboard in Resources */,
+				6660A99222258D54003CA656 /* three.min.js in Resources */,
 				6660A9662225860E003CA656 /* Assets.xcassets in Resources */,
+				6660A99422258E7A003CA656 /* aframe.min.js in Resources */,
 				6660A9642225860E003CA656 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,12 +341,113 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		73AFDBEFBD13289BC15D1843 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CabinARTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADC23E8A69235A15A3960F6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CabinAR-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D303C95CFE219E836B4910C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CabinARUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9444612B3456C47EE66992F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CabinAR/Pods-CabinAR-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CabinAR/Pods-CabinAR-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6660A9552225860E003CA656 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6660A9612225860E003CA656 /* ViewController.swift in Sources */,
+				66C05CC9224BBD15008A2DB1 /* LoginViewController.swift in Sources */,
+				66920A9A224C2CB0008CBCD3 /* CabinSpace.swift in Sources */,
+				66C05CC5224BBAB7008A2DB1 /* SpacesTableViewController.swift in Sources */,
+				6660A9612225860E003CA656 /* SpaceViewController.swift in Sources */,
+				66C05CC3224AF300008A2DB1 /* CabinARApi.swift in Sources */,
+				66C05CC7224BBD09008A2DB1 /* SettingsViewController.swift in Sources */,
+				66920A9C224C2E3E008CBCD3 /* CabinPiece.swift in Sources */,
 				6660A95D2225860E003CA656 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +621,7 @@
 		};
 		6660A9842225860F003CA656 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0ED370B3CE3A25A20CAB6C1 /* Pods-CabinAR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +640,7 @@
 		};
 		6660A9852225860F003CA656 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0CD9E680017615E2A9E97BF /* Pods-CabinAR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +659,7 @@
 		};
 		6660A9872225860F003CA656 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50FD56C9B83A7871C8E98A41 /* Pods-CabinARTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +681,7 @@
 		};
 		6660A9882225860F003CA656 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E370940493E94323CE49BA70 /* Pods-CabinARTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +703,7 @@
 		};
 		6660A98A2225860F003CA656 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C4CDE8DC883D17E12B08F23 /* Pods-CabinARUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +724,7 @@
 		};
 		6660A98B2225860F003CA656 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78A59F284574D5166113F905 /* Pods-CabinARUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

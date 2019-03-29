@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+</style>
+<script src='./aframe.min.js'></script>
+</head>
+<body>
+    <a-scene vr-mode-ui="enabled: false" background="transparent:true;" cursor="rayOrigin: mouse">
+        <a-entity id="cameraWrapper"  position="0 0 3" rotation="0 0 0">
+            <a-entity camera id='theCamera'></a-entity>
+        </a-entity>
+        <a-entity id="cabinar-scene" position="0 0 0">
+        </a-entity>
+
+    </a-scene>
+<!--
+ <a-cylinder position="1 0 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+<a-box src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Ftexture.jpg?1490308149272" position="-2 0.5 -4"></a-box>
+<a-sphere src="https://cdn.glitch.com/b870d9ec-1139-44f9-b462-223e4a2c74e7%2Fcubes.jpg?1490308405745" radius="0.5" position="0 0 -3"></a-sphere>
+-->
+    
+<script>
+    var pieces = {};
+    var sceneEl;
+    var cameraObj;
+    var cameraComponent;
+    
+    window.addEventListener("load",function() {
+        cameraObj = document.getElementById("cameraWrapper").object3D
+        cameraComponent = document.getElementById("theCamera").getObject3D("camera")
+        sceneEl = document.getElementById("cabinar-scene");
+    });
+    
+    function setPieceEntity(pieceId, pieceScale, pieceMarkup ) {
+        var el = document.getElementById("piece-" + pieceId)
+        
+        if(!el) {
+           el = document.createElement("a-entity")
+           el.setAttribute("visible",false)
+           sceneEl.appendChild(el)
+           pieces[pieceId] = el;
+        }
+        el.setAttribute("scale",`${pieceScale} ${pieceScale} ${pieceScale}`)
+        el.innerHTML = pieceMarkup;
+    }
+                              
+    function setScenePostParams(pieceMatrices,c,projection) {
+        cameraObj.matrixAutoUpdate = false
+        cameraObj.matrix.set.apply(camera.matrix,c)
+        
+        cameraComponent.projectionMatrix.set.apply(theCamera.projectionMatrix,projection);
+        cameraComponent.projectionMatrixInverse.getInverse( theCamera.projectionMatrix );
+        
+        Object.keys(pieceMatrices).forEach(function(pieceId) {
+                                           var object3D = pieces[pieceId].object3D
+                                           if(!object3D.visible) {
+                                              object3D.visible = true;
+                                           }
+                                           object3D.matrixAutoUpdate = false;
+                                           object3D.matrix.set.apply(object3D.matrix,pieceMatrices[pieceId]);
+                                           })
+    }
+</script>
+    
+</body>
