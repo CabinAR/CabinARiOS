@@ -5,7 +5,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import Starscream
-
+import CoreLocation
 
 class CabinARApi {
     
@@ -48,9 +48,15 @@ class CabinARApi {
     }
     
     //#if DEBUG
-    let PROTOCOL = "http"
+    //let PROTOCOL = "http"
+    //let HOST = "192.168.1.12:3000"
     //let HOST = "localhost:3000"
-    let HOST = "192.168.1.12:3000"
+    //let PROTOCOL = "http"
+    //let HOST = "localhost:3000"
+
+    let PROTOCOL = "https"
+    let HOST = "www.cabin-ar.com"
+    //let HOST = "cabinar-staging.herokuapp.com"
     //let baseUrl = "http://192.168.1.15:3000/api"
     //#else
     //let baseUrl = "https://www.cabinar.io/api"
@@ -73,11 +79,15 @@ class CabinARApi {
         return URL(string: "ws://\(HOST)/cable")!
     }
         
-    func getNearbySpaces(callback:@escaping ([CabinSpace]) -> Void) {
-        let parameters: Parameters = [:]; // "api_key": userToken!]
+    func getNearbySpaces(_ location:CLLocationCoordinate2D?, callback:@escaping ([CabinSpace]) -> Void) {
+        let parameters: Parameters = ["api_key": userToken ?? "",
+                                      "latitude": location?.latitude ?? 0.0 ,
+                                      "longitude": location?.longitude ?? 0.0 ]
+    
         Alamofire.request(url("/spaces"), parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
+                print(value)
                 let json = JSON(value)
                 let entries = CabinSpace.create(fromJson: json)
                 callback(entries)
@@ -89,8 +99,8 @@ class CabinARApi {
         return
     }
     
-    func getSpace(_ id:Int, callback:@escaping (CabinSpace?) -> Void) {
-        let parameters: Parameters = [:]; // "api_key": userToken!]
+    func getSpace(_ id:Int, api_key:String? = nil, callback:@escaping (CabinSpace?) -> Void) {
+        let parameters: Parameters = ["api_key": api_key ?? userToken ?? ""]
         Alamofire.request(url("/spaces/" + String(id)), parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -117,7 +127,7 @@ class CabinARApi {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                let user = UserInfo.create(fromJSON: json["user"])
+                let user = UserInfo.create(fromJSON: json)
                 callback(user)
             case .failure(_):
                 callback(nil)
@@ -125,32 +135,13 @@ class CabinARApi {
         }
     }
     
-    func updateUser(_ user:UserInfo, callback:@escaping (Bool) -> Void) {
-        let parameters: Parameters = [ "api_key": userToken!, "user": user.parameters() ]
-        Alamofire.request(url("/users"),  method: .put, parameters: parameters).validate().responseJSON() { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                let token = json["token"].string
-                if token !=  nil {
-                    callback(true)
-                } else {
-                    callback(false)
-                }
-                return
-            case .failure(_):
-                callback(false)
-                return
-            }
-        }
-    }
     
     func logout() {
         self.userToken = nil
     }
     
-    func performLogin(email:String, password:String, callback:@escaping (Bool,String?, UserInfo?) -> Void) {
-        let parameters: Parameters = [ "user" : [ "email": email, "password": password]]
+    func performLogin(api_key:String, callback:@escaping (Bool,String?, UserInfo?) -> Void) {
+        let parameters: Parameters = [ "api_key": api_key ]
         Alamofire.request(url("/logins"), method: .post,
                           parameters: parameters).validate().responseJSON() { response in
                             switch response.result {
@@ -172,28 +163,5 @@ class CabinARApi {
         }
     }
     
-    
-    func register(username:String, password:String, callback:@escaping (Bool,String) -> Void) {
-        let parameters: Parameters = [ "user" : [ "username": username, "password": password]]
-        
-        Alamofire.request(url("users"),  method: .post, parameters: parameters).validate().responseJSON() { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                let token = json["token"].string
-                if let token = token {
-                    self.userToken = token
-                    callback(true, "")
-                } else {
-                    let errorMessage = json["error"].stringValue
-                    callback(false, errorMessage)
-                }
-                return
-            case .failure(_):
-                callback(false, "Unable to reach server")
-                return
-            }
-        }
-    }
     
 }

@@ -7,26 +7,81 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SpacesTableViewController: UITableViewController {
+
+class SpacesTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     var spaces: [CabinSpace]?
+    var locationManager: CLLocationManager?
+    
+    var userLocation: CLLocationCoordinate2D?
+
+    let refreshControlView = UIRefreshControl()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "backButton")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "backButton")
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.lightGray
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
-        
-        loadUserAndSpaces()
+        let settings = UIBarButtonItem(image: UIImage(named:"config"), style: .plain, target: self, action: #selector(openSettings))
+        navigationItem.rightBarButtonItems = [settings]
+    
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControlView
+        } else {
+            tableView.addSubview(refreshControlView)
+        }
+        (refreshControlView).addTarget(self, action: #selector(refreshSpaces(_:)), for: .valueChanged)
 
+        
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        
+    }
+        
+    override func viewDidAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        if appDelegate.reloadScene {
+            loadSpaces()
+            appDelegate.reloadScene = false
+        }
+       
     }
     
+    @objc private func refreshSpaces(_ sender: Any) {
+        
+        
+        loadSpaces()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+             manager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.userLocation = location.coordinate
+            print("Found user's location: \(location)")
+            loadUserAndSpaces()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+        loadUserAndSpaces()
+    }
 
     @objc func openSettings() {
         performSegue(withIdentifier: "optionsSegue", sender: self )
@@ -35,9 +90,7 @@ class SpacesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         
-        let settings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(openSettings))
-        
-        navigationItem.rightBarButtonItems = [settings]
+
     }
     
     func loadUserAndSpaces() {
@@ -51,10 +104,15 @@ class SpacesTableViewController: UITableViewController {
     }
     
     func loadSpaces() {
-        
-        CabinARApi.api.getNearbySpaces() { spaces in
-            self.spaces = spaces
-            self.refreshTable()
+        self.refreshControlView.beginRefreshing()
+        CabinARApi.api.getNearbySpaces(self.userLocation) { spaces in
+            
+            DispatchQueue.main.async {
+                self.refreshControlView.endRefreshing()
+                self.spaces = spaces
+                self.refreshTable()
+
+            }
         }
     }
     
@@ -69,21 +127,37 @@ class SpacesTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Nearby"
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return spaces?.count ?? 0
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = UIColor.white
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "spaceCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "spaceCell", for: indexPath) as! SpaceTableViewCell
 
         // Configure the cell...
         
         let space = spaces![indexPath.row]
-        cell.textLabel?.text = space.name
-        cell.detailTextLabel?.text = "Visit Space"
+        cell.title.text = space.name
+        cell.subtitle.text = space.tagline
+        
+        if let icon_url = space.icon_url {
+            cell.icon.kf.setImage(with:  icon_url, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, URL) in
+                cell.setNeedsLayout()
+            })
+        } else {
+            cell.icon.image = nil
+        }
 
         return cell
     }

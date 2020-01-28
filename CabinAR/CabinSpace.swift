@@ -14,14 +14,22 @@ import Alamofire
 struct CabinSpace {
     var id: Int
     var name: String
+    var icon_url: URL?
+    var tagline: String?
 
     var pieces:  Dictionary<Int, CabinPiece>
     
     init(id: Int,
          name: String,
+         icon_url: String?,
+         tagline: String?,
          pieces: Dictionary<Int,CabinPiece>) {
         self.id = id
         self.name = name
+        self.tagline = tagline
+        if icon_url != nil {
+            self.icon_url = URL(string: icon_url!)
+        }
         self.pieces = pieces
     }
     
@@ -50,6 +58,8 @@ struct CabinSpace {
         
         let space = CabinSpace(id: fromJson["id"].intValue,
                                   name: fromJson["name"].stringValue,
+                                  icon_url: fromJson["icon_url"].string,
+                                  tagline: fromJson["tagline"].string,
                                   pieces: pieces)
         return space
     }

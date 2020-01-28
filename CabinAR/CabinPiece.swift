@@ -17,6 +17,7 @@ struct CabinPiece {
     var space_id: Int
     var published: Bool
     var scene: String
+    var assets: String
     var code: String
     var marker_units: String?
     var marker_width: Float?
@@ -38,11 +39,14 @@ struct CabinPiece {
     
     static func createSingle(json: JSON) -> CabinPiece {
         
+        let assets = json["assets"].stringValue.replacingOccurrences(of: "\"/ar-file", with: "\"https://www.cabin-ar.com/ar-file")
+        
         let piece = CabinPiece(id: json["id"].intValue,
                                user_id: json["user_id"].intValue,
                                space_id: json["space_id"].intValue,
                                published: json["published"].boolValue,
                                scene: json["scene"].stringValue,
+                               assets: assets,
                                code: json["code"].stringValue,
                                marker_units: json["marker_units"].string,
                                marker_width: json["marker_width"].float,

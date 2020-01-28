@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		12341670DB53C6D99000B257 /* Pods_CabinARUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15540B481D81A532360C274 /* Pods_CabinARUITests.framework */; };
 		66075E05228BB172003305B6 /* WebAssets in Resources */ = {isa = PBXBuildFile; fileRef = 66075E04228BB171003305B6 /* WebAssets */; };
+		663127DE229ACE4000C73954 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663127DD229ACE4000C73954 /* GameKit.framework */; };
+		663127E0229ACE4900C73954 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 663127DF229ACE4900C73954 /* StoreKit.framework */; };
+		663127EB22A3FE1600C73954 /* SpaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663127EA22A3FE1600C73954 /* SpaceTableViewCell.swift */; };
 		6660A95D2225860E003CA656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A95C2225860E003CA656 /* AppDelegate.swift */; };
 		6660A95F2225860E003CA656 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 6660A95E2225860E003CA656 /* art.scnassets */; };
 		6660A9612225860E003CA656 /* SpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6660A9602225860E003CA656 /* SpaceViewController.swift */; };
@@ -25,7 +28,6 @@
 		66C05CC3224AF300008A2DB1 /* CabinARApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC2224AF300008A2DB1 /* CabinARApi.swift */; };
 		66C05CC5224BBAB7008A2DB1 /* SpacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */; };
 		66C05CC7224BBD09008A2DB1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */; };
-		66C05CC9224BBD15008A2DB1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */; };
 		A4B870BF2A29126246F0A9F4 /* Pods_CabinARTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */; };
 		D29A5E8CD56568580CB1AC79 /* Pods_CabinAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */; };
 /* End PBXBuildFile section */
@@ -51,6 +53,9 @@
 		35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CabinAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FD56C9B83A7871C8E98A41 /* Pods-CabinARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARTests.debug.xcconfig"; path = "Target Support Files/Pods-CabinARTests/Pods-CabinARTests.debug.xcconfig"; sourceTree = "<group>"; };
 		66075E04228BB171003305B6 /* WebAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebAssets; sourceTree = "<group>"; };
+		663127DD229ACE4000C73954 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		663127DF229ACE4900C73954 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		663127EA22A3FE1600C73954 /* SpaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceTableViewCell.swift; sourceTree = "<group>"; };
 		6660A9592225860E003CA656 /* CabinAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CabinAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6660A95C2225860E003CA656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6660A95E2225860E003CA656 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -73,7 +78,6 @@
 		66C05CC2224AF300008A2DB1 /* CabinARApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinARApi.swift; sourceTree = "<group>"; };
 		66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesTableViewController.swift; sourceTree = "<group>"; };
 		66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CabinARTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A59F284574D5166113F905 /* Pods-CabinARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARUITests.release.xcconfig"; path = "Target Support Files/Pods-CabinARUITests/Pods-CabinARUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C4CDE8DC883D17E12B08F23 /* Pods-CabinARUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CabinARUITests.debug.xcconfig"; path = "Target Support Files/Pods-CabinARUITests/Pods-CabinARUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,7 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				663127E0229ACE4900C73954 /* StoreKit.framework in Frameworks */,
 				D29A5E8CD56568580CB1AC79 /* Pods_CabinAR.framework in Frameworks */,
+				663127DE229ACE4000C73954 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +147,8 @@
 				6660A95E2225860E003CA656 /* art.scnassets */,
 				6660A9602225860E003CA656 /* SpaceViewController.swift */,
 				6660A9622225860E003CA656 /* Main.storyboard */,
+				663127EA22A3FE1600C73954 /* SpaceTableViewCell.swift */,
 				66C05CC6224BBD09008A2DB1 /* SettingsViewController.swift */,
-				66C05CC8224BBD15008A2DB1 /* LoginViewController.swift */,
 				66C05CC4224BBAB7008A2DB1 /* SpacesTableViewController.swift */,
 				6660A9652225860E003CA656 /* Assets.xcassets */,
 				6660A9672225860E003CA656 /* LaunchScreen.storyboard */,
@@ -191,6 +197,8 @@
 		FB93B06D39068315AD0E6C92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				663127DF229ACE4900C73954 /* StoreKit.framework */,
+				663127DD229ACE4000C73954 /* GameKit.framework */,
 				35DD26BB1621D345BE76D36F /* Pods_CabinAR.framework */,
 				72211D99BFC85683BA294D25 /* Pods_CabinARTests.framework */,
 				F15540B481D81A532360C274 /* Pods_CabinARUITests.framework */,
@@ -270,6 +278,14 @@
 				TargetAttributes = {
 					6660A9582225860E003CA656 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					6660A96E2225860E003CA656 = {
 						CreatedOnToolsVersion = 10.1;
@@ -432,9 +448,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C05CC9224BBD15008A2DB1 /* LoginViewController.swift in Sources */,
 				66920A9A224C2CB0008CBCD3 /* CabinSpace.swift in Sources */,
 				66BBF61B2252E23200136D9A /* SocketCommand.swift in Sources */,
+				663127EB22A3FE1600C73954 /* SpaceTableViewCell.swift in Sources */,
 				66C05CC5224BBAB7008A2DB1 /* SpacesTableViewController.swift in Sources */,
 				6660A9612225860E003CA656 /* SpaceViewController.swift in Sources */,
 				66C05CC3224AF300008A2DB1 /* CabinARApi.swift in Sources */,
@@ -619,16 +635,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PNZTA279GK;
 				INFOPLIST_FILE = CabinAR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Cykod.CabinAR;
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cykod.cabinar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -638,16 +657,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = PNZTA279GK;
 				INFOPLIST_FILE = CabinAR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Cykod.CabinAR;
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cykod.cabinar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

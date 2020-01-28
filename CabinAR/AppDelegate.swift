@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var userInfo: UserInfo?
+    var reloadScene: Bool = true
     
     func setUser(_ userInfo: UserInfo) {
         self.userInfo = userInfo
@@ -22,8 +23,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
+            ], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .selected)
+        
+      
         return true
     }
+    
+    func application(_ application: UIApplication,
+                        open url: URL,
+                        options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
+           
+        // Process the URL.
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+           let action = components.host,
+           let params = components.queryItems else {
+               print("Invalid URL")
+               return false
+        }
+        
+        if action == "space" {
+            if let cabin_key = params.first(where: { $0.name == "cabin_key" })?.value,
+                let space_id = params.first(where: { $0.name == "space_id" })?.value {
+                
+                CabinARApi.api.getSpace(Int(space_id) ?? 0, api_key: cabin_key) { fetchedSpace in
+                    let mySpace = fetchedSpace
+                    
+                    // Remove any nested controller
+                    let navigationController = self.window?.rootViewController as! UINavigationController?
+                    
+                    navigationController!.popToRootViewController(animated: false)
+                       
+                    let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+                    let spaceController = storyBoard.instantiateViewController(withIdentifier: "space_view_controller") as! SpaceViewController
+                
+                    if mySpace != nil {
+                        spaceController.space = mySpace
+                        spaceController.api_key = cabin_key
+                        navigationController!.pushViewController(spaceController, animated:true)
+                    }
+                }
+            }
+
+        }
+        
+        
+       
+       return false
+   }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

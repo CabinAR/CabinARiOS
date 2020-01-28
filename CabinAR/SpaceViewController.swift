@@ -14,6 +14,11 @@ import WebKit
 import Kingfisher
 import Starscream
 
+extension WKWebView {
+    override open var safeAreaInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
 
 class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, SCNSceneRendererDelegate, WKUIDelegate, WebSocketDelegate, WKNavigationDelegate {
 
@@ -21,11 +26,13 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var fitToScan: UIImageView!
     
-    var webView: WKWebView!
+    @IBOutlet weak var webView: WKWebView!
     var socket: WebSocket!
     
     var space: CabinSpace?
+    var api_key: String?
     var pieces: Dictionary<Int,CabinPiece> = [:]
     
     var activePieces:Dictionary<String,SCNNode> = [:]
@@ -39,12 +46,14 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
     }
     
     func loadSpace() {
-        CabinARApi.api.getSpace(self.space!.id) { space in
+        CabinARApi.api.getSpace(self.space!.id, api_key: self.api_key) { space in
             self.space = space
             self.pieces = space!.pieces
             // set up the image bundle etcs
             
-            let urls = self.pieces.map { URL(string: $1.marker_url!)! }
+            self.setAssets()
+            
+            let urls = self.pieces.compactMap { $1.marker_url }.map { URL(string: $0)! }
             
             let prefetcher = ImagePrefetcher(urls: urls) {
                 skippedResources, failedResources, completedResources in
@@ -68,29 +77,26 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
 
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene
-        //let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // sceneView.showsStatistics = true
         
         // Set the scene to the view
         //sceneView.scene = scene
-        self.edgesForExtendedLayout = []
+        self.edgesForExtendedLayout = UIRectEdge.all
 
 
-        let webConfiguration = WKWebViewConfiguration()
-        self.webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        //let webConfiguration = WKWebViewConfiguration()
+        //self.webView = WKWebView(frame: .zero, configuration: webConfiguration)
         self.webView.uiDelegate = self
         self.webView.navigationDelegate = self
-
         
         self.webView.isOpaque = false
         self.webView.backgroundColor = UIColor.clear
         self.webView.scrollView.backgroundColor = UIColor.clear
 
-        self.webView.frame  = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        self.webView.frame.origin.x = 0
-        self.webView.frame.origin.y = 0
+        // self.sceneView.frame // 
+        self.webView.frame  = self.sceneView.frame // CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        //self.webView.frame.origin.x = 0
+        //self.webView.frame.origin.y = 0
         self.view.addSubview(self.webView)
         
         let url = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "WebAssets")!
@@ -187,11 +193,15 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
     
     
     @IBAction func refreshView(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.fitToScan.isHidden = false;
+        }
         self.resetTracking()
     }
     
     
     func resetTracking() {
+        self.webView.evaluateJavaScript("resetTracking()")
         
         let group = DispatchGroup()
         
@@ -200,22 +210,23 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
         var pieceList:[(CabinPiece,Image)] = []
 
         for (_, piece) in self.space!.pieces {
-            group.enter()
-            KingfisherManager.shared.retrieveImage(with: URL(string: piece.marker_url!)!) { result in
-                switch result {
-                case .success(let value):
-                    // The image was set to image view:
-                    pieceList.append((piece, value.image))
-                case .failure(let error):
-                    print("Job failed: \(error.localizedDescription)")
+            if piece.marker_url != nil {
+                group.enter()
+                KingfisherManager.shared.retrieveImage(with: URL(string: piece.marker_url!)!) { result in
+                    switch result {
+                    case .success(let value):
+                        // The image was set to image view:
+                        pieceList.append((piece, value.image))
+                    case .failure(let error):
+                        print("Job failed: \(error.localizedDescription)")
+                    }
+                    group.leave()
                 }
-                group.leave()
             }
         }
         
         group.notify(queue: .main) {
             var referenceImages:Set<ARReferenceImage> = []
-            
             for pieceImage in pieceList {
                 let referenceImage = ARReferenceImage(
                     pieceImage.1.cgImage!,
@@ -225,18 +236,22 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
                 referenceImages.insert(referenceImage)
             }
             
-            self.addPiecesToWebview()
             let configuration = ARWorldTrackingConfiguration()
             configuration.detectionImages = referenceImages
             self.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-
+       
         }
     }
     
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-        
+        let nsError = error as NSError
+        let alert = UIAlertController(title:  error.localizedDescription, message: nsError.localizedRecoverySuggestion, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .default) { action in
+            self.navigationController?.popViewController(animated: true)
+        })
+        present(alert, animated: true)
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
@@ -275,16 +290,16 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
             planeNode.runAction(self.imageHighlightAction)
             
             // Add the plane visualization to the scene.
-            node.addChildNode(planeNode)
+            //node.addChildNode(planeNode)
             
             self.activePieces[referenceImage.name!] = node
+            self.addPieceByIdToWebview(referenceImage.name!)
             
-            let box = SCNBox(width: 0.3, height: 0.3, length: 0.3, chamferRadius: 0.4)
-            let boxNode = SCNNode(geometry: box)
-            
-            //let cameraTransform = camera?.transform
-            //boxNode.simdTransform = cameraTransform!
-            boxNode.localTranslate(by: SCNVector3(x: 0, y: 0, z: 0))
+            DispatchQueue.main.async {
+                if !self.fitToScan.isHidden {
+                    self.fitToScan.isHidden = true
+                }
+            }
             
             //planeNode.addChildNode(boxNode)
         }
@@ -320,6 +335,13 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
         return  "setPieceEntity(\(piece.id), \(piece.marker_meter_width ?? 1.0), `\(piece.scene)`);"
     }
     
+    func addPieceByIdToWebview(_ pieceId: String) {
+        if let pieceIdInt = Int(pieceId),
+            let piece = self.pieces[pieceIdInt]  {
+            addPieceToWebview(piece)
+        }
+    }
+    
     func addPieceToWebview(_ piece:CabinPiece) {
         DispatchQueue.main.async {
             print(self.pieceString(piece))
@@ -327,6 +349,20 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
         }
     }
     
+    func assetString() -> String {
+        var allAssets = ""
+        for (_,piece) in self.pieces  {
+            allAssets = allAssets + piece.assets + "\n"
+        }
+        print("addAssets(`\(allAssets)`);")
+        return "addAssets(`\(allAssets)`);"
+    }
+    
+    func setAssets() {
+        DispatchQueue.main.async {
+            self.webView.evaluateJavaScript(self.assetString());
+        }
+    }
     
     func addPiecesToWebview() {
         DispatchQueue.main.async {
@@ -334,7 +370,7 @@ class SpaceViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegat
             for (_,piece) in self.pieces  {
                 allStr = allStr + self.pieceString(piece)
             }
-            print(allStr)
+            allStr += ";hideAllPieces();"
             self.webView.evaluateJavaScript(allStr);
         }
     }
